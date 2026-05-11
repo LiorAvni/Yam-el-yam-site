@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 const ROUTE = {
-  title: "ים אל ים: אכזיב → כנרת",
+  title: "ים אל ים: אכזיב ← כנרת",
   subtitle: "תכנון מלא לשלושה ימים עם לינה באבירים ובחניון לילה פיתול מירון",
   totalKm: "70.1 ק״מ",
   climb: "כ־1,780 מ׳ עלייה",
@@ -32,7 +32,7 @@ const DAYS = [
   {
     day: "יום 1",
     date: "שישי 15.5",
-    title: "אכזיב → נחל כזיב ומונפורט → חניון אבירים",
+    title: "אכזיב ← נחל כזיב ומונפורט ← חניון אבירים",
     distance: "כ־19.8 ק״מ",
     difficulty: "בינוני־קשה",
     sleep: "חניון אבירים",
@@ -59,7 +59,7 @@ const DAYS = [
   {
     day: "יום 2",
     date: "שבת 16.5",
-    title: "אבירים → אלקוש → חורבת חממה → הר מירון → פיתול מירון",
+    title: "אבירים ← אלקוש ← חורבת חממה ← הר מירון ← פיתול מירון",
     distance: "כ־28.9 ק״מ",
     difficulty: "קשה מאוד",
     sleep: "חניון לילה פיתול מירון",
@@ -88,7 +88,7 @@ const DAYS = [
   {
     day: "יום 3",
     date: "ראשון 17.5",
-    title: "פיתול מירון → נחל עמוד → כנרת / גינוסר → פתח תקווה",
+    title: "פיתול מירון ← נחל עמוד ← כנרת / גינוסר ← פתח תקווה",
     distance: "כ־21.4 ק״מ",
     difficulty: "קשה בגלל הזמנים",
     sleep: "סיום וחזרה הביתה",
@@ -257,13 +257,10 @@ function RouteMap() {
           opacity: 0.92,
         }).addTo(map);
 
-        const startIcon = L.divIcon({ className: "mapStartIcon", html: "ים", iconSize: [36, 36] });
-        const endIcon = L.divIcon({ className: "mapEndIcon", html: "כנרת", iconSize: [48, 36] });
         const dotIcon = L.divIcon({ className: "mapDotIcon", html: "", iconSize: [14, 14] });
 
-        waypoints.forEach((wp, index) => {
-          const icon = index === 0 ? startIcon : index === waypoints.length - 1 ? endIcon : dotIcon;
-          L.marker([wp.lat, wp.lon], { icon })
+        waypoints.forEach((wp) => {
+          L.marker([wp.lat, wp.lon], { icon: dotIcon })
             .addTo(map)
             .bindPopup(`<strong>${wp.name}</strong>${wp.desc ? `<br/>${wp.desc}` : ""}`);
         });
@@ -520,7 +517,7 @@ function App() {
         <div>
           <h2>סיכום קצר לביצוע</h2>
           <p>
-            שישי: אכזיב → אבירים. שבת: אבירים → פיתול מירון. ראשון: פיתול מירון → נחל עמוד → כנרת.
+            שישי: אכזיב ← אבירים. שבת: אבירים ← פיתול מירון. ראשון: פיתול מירון ← נחל עמוד ← כנרת.
             התכנון אפשרי, אבל דורש יציאה מוקדמת, משמעת מים, משמעת זמן, ולינה רק בנקודות המותרות שתוכננו.
           </p>
         </div>
